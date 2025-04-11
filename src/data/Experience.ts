@@ -18,7 +18,7 @@ export type Experience = {
       duration: "March 2025 - Present",
       website: "https://www.mentorgain.com/",
       technologies: ["ReactJs", "Typescript", "Bootstrap CSS"],
-      description: "Added various features as required by company, UI fixes, handling website with a large organisation accessing it."
+      description: "• Implemented key features tailored to organizational needs and improved UI consistency across the platform\n• Resolved UI/UX bugs to enhance user engagement and accessibility\n• Collaborated on maintaining a scalable frontend for a platform accessed by large organizations"
     },
     {
       id: "interact-now",

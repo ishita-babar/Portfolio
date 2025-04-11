@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 interface CursorSpotlightProps {
@@ -6,7 +7,7 @@ interface CursorSpotlightProps {
   text?: string;
 }
 
-export default function CursorSpotlight({ size = 16, text = "" }: CursorSpotlightProps) {
+export default function CursorSpotlight({ size = 20, text = "" }: CursorSpotlightProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -24,15 +25,11 @@ export default function CursorSpotlight({ size = 16, text = "" }: CursorSpotligh
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        transform: `translate(${position.x - size/2}px, ${position.y - size/2}px)`,
-        transition: "width 0.2s ease, height 0.2s ease" 
+        transform: `translate(${position.x - size / 2}px, ${position.y - size / 2}px)`,
+        transition: "width 0.2s ease, height 0.2s ease",
       }}
     >
-      {text && (
-        <span className="text-black text-lg font-bold">
-          {text}
-        </span>
-      )}
+      {text && <span className="text-black text-lg font-bold">{text}</span>}
     </div>
   );
 }

@@ -5,49 +5,63 @@ export type Project = {
     description: string;
     link: string;
     site: string;
+    techStack: string[];
   };
   
-  export const dummyProjects: Project[] = [
+  export const Project: Project[] = [
     {
       id: 1,
       name: "ForkThis",
       image: "/ForkThis.png",
-      description: "Engineered an interactive website to facilitate a seamless experience for participants in a Git and GitHub learning competition. Oversaw a website that served as the central hub for more than 100 participants during a 3-day event. Established a dynamic leaderboard to track and display participants’ progress and achievements",
+      description: "An open-source hackathon platform where 250+ participants fixed curated bugs to contribute meaningfully.",
       link: "https://github.com/ishita-babar/forkthis24-frontend",
       site: "https://forkthis.csivit.com/",
+      techStack: ["Next.js ", "Tailwind CSS", "Typescript"],
     },
     {
       id: 2,
       name: "CCS-2025",
       image: "/CCS.png",
-      description: "An AI-powered blog writing tool using GPT.",
+      description: "A domain-based recruitment website with quizzes and tasks for junior selections.",
       link: "https://github.com/ishita-babar/ccs-2025",
       site: "https://interact.csivit.com/",
+      techStack: ["Next.js", "Tailwind CSS", "Typescript"],
     },
     {
       id: 3,
       name: "LaserTag",
       image: "/LaserTag.png",
-      description: "An AI-powered blog writing tool using GPT.",
+      description: "Event site with mailer integration, slot booking, QR generation, and real-time slot handling.",
       link: "https://github.com/ishita-babar/lasertag-frontend-2024",
       site: "https://lasertag.csivit.com/",
+      techStack: ["Next.js", "Tailwind CSS", "Typescript"],
     },
     {
       id: 4,
       name: "DeepFake Detection",
       image: "/Deepfake.png",
-      description: "An AI-powered blog writing tool using GPT.",
+      description: "A web app that detects if uploaded images, videos, texts, or audio are AI-generated.",
       link: "https://github.com/ishita-babar/deepfake-detection",
       site: "",
+      techStack: ["Deep Learning", "Machine Learning", "Python"],
     },
     {
       id: 5,
       name: "Portfolio",
-      image: "/Deepfake.png",
-      description: "An AI-powered blog writing tool using GPT.",
-      link: "https://github.com/ishita-babar/deepfake-detection",
+      image: "/Portfolio.png",
+      description: " My personal website that visually extends my resume and showcases my work.",
+      link: "https://github.com/ishita-babar/Portfolio",
       site: "",
+      techStack: ["Next.js", "Tailwind CSS", "Typescript"],
     },
-
+    {
+      id: 6,
+      name: "Horizon",
+      image: "/Taskflow.png",
+      description: "A one-stop productivity platform for tasks, budgeting, journaling, notes, and habit tracking.",
+      link: "https://github.com/ishita-babar/horizon",
+      site: "",
+      techStack: ["Reactjs", "CSS", "Javacript"],
+    },
   ];
   

@@ -20,6 +20,9 @@ const beVietnam= Be_Vietnam_Pro({
 
 export const metadata: Metadata = {
   title: "Ishita Babar",
+  icons: {
+    icon: "/logo.png", 
+  },
 };
 
 export default function RootLayout({

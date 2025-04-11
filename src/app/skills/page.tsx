@@ -222,7 +222,7 @@ export default function Skills() {
         <Navbar />
         <div className="absolute top-10 left-10 z-10">
           <div className="text-4xl font-semibold mb-2 mt-6">Skills</div>
-          <hr className="border-black w-full mb-10" />
+          <hr className="border-black w-full" />
         </div>
         
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
@@ -230,7 +230,7 @@ export default function Skills() {
             href="https://drive.google.com/file/d/120-TF5szQXqN2068LKnKyq9QTS6edDbL/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="px-10 py-3 bg-[#1D1D1D] text-[#FAF9F6] rounded-md font-medium text-3xl hover:bg-opacity-100 transition-all shadow-lg flex items-center justify-center font-vietnam"
+            className="px-10 py-3 bg-[#1D1D1D] text-[#FAF9F6] rounded-md font-medium text-xl hover:bg-opacity-100 transition-all shadow-lg flex items-center justify-center"
           >
             Resume
           </a>

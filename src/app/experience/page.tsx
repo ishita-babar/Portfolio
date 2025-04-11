@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import CursorSpotlight from "@/components/Cursor";
-import Navbar from "@/components/Navbar";
+import CursorSpotlight from "../../components/Cursor";
+import Navbar from "../../components/Navbar";
 import { experiences, introText } from "@/data/Experience";
 import { ChevronDown, ChevronUp, Globe } from "lucide-react";
 
@@ -21,7 +21,7 @@ export default function Experience() {
       >
         <Navbar />
         
-        <div className="container mx-auto px-4 md:px-8 py-16">
+        <div className="w-full px-4 md:px-8 py-16">
           <div className="text-4xl font-semibold mb-2">Experience</div>
           <hr className="border-black w-full mb-10" />
           
@@ -54,7 +54,6 @@ export default function Experience() {
               </div>
             </div>
             
-            {/* Right Column - Experience Accordion */}
             <div className="mt-10 md:mt-0">
               <div className="space-y-6">
                 {experiences.map((exp) => (
