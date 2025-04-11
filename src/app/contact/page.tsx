@@ -74,7 +74,6 @@ export default function Contacts() {
           <hr className="border-[#FAF9F6] mb-10 w-full" />
         </div>
 
-        {/* Marquee Section */}
         <div className="w-full my-20 overflow-hidden">
           <div ref={containerRef}>
             <div ref={textRef} className="text-[#FAF9F6] text-7xl md:text-8xl font-bold px-4">
@@ -82,8 +81,6 @@ export default function Contacts() {
             </div>
           </div>
         </div>
-
-        {/* Contact Section */}
         <div className="w-full px-6 md:px-16 my-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="text-[#FAF9F6]">

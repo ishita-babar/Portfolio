@@ -22,7 +22,6 @@ export default function Projects() {
           {Project.map((project) => (
             <div key={project.id} className="perspective group cursor-none">
               <div className="relative w-full aspect-[4/3] transition-transform duration-500 transform-style preserve-3d group-hover:rotate-y-180 rounded-xl shadow-md">
-                {/* Front */}
                 <div className="absolute w-full h-full backface-hidden overflow-hidden rounded-xl">
                   <img
                     src={project.image}
@@ -30,8 +29,6 @@ export default function Projects() {
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
-
-                {/* Back */}
                 <div className="absolute w-full h-full bg-[#1D1D1D] text-[#FAF9F6] rounded-xl p-4 transform rotate-y-180 backface-hidden flex flex-col justify-between">
                   <div className="flex justify-end gap-3">
                     {project.link && (

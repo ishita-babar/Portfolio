@@ -16,11 +16,8 @@ export default function Home() {
   return (
     <>
       <CursorSpotlight />
-      {/* Wrapper ensures all scroll effects are contained */}
       <div className="relative w-full bg-[#f9f9f9] text-black font-vietnam overflow-x-hidden">
         <Navbar />
-
-        {/* Hero Section */}
         <section className="w-full h-screen flex flex-col justify-between px-12 py-24 overflow-hidden">
           <motion.h1
             className="text-9xl font-light leading-tight"
@@ -48,8 +45,6 @@ export default function Home() {
           </span>
         </motion.p>
         </section>
-
-        {/* Sections */}
         <Projects />
         <Experience />
         <Skills />

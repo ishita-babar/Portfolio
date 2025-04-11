@@ -26,7 +26,6 @@ export default function Experience() {
           <hr className="border-black w-full mb-10" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left Column - Introduction */}
             <div className="pr-0 md:pr-8">
               <h2 className="text-2xl font-medium mb-6">My Professional Journey</h2>
               <p className="text-lg leading-relaxed">{introText}</p>

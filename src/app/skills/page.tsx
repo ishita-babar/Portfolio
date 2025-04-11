@@ -29,27 +29,20 @@ export default function Skills() {
     "NodeJS", "ExpressJS", "MongoDB", "Mongoose", 
     "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning"
   ];
-
-  // Calculate appropriate size based on text length
   const getSkillSize = (name: string) => {
-    // Base size for short names
     const baseSize = 90;
-    // Additional pixels per character for the longest word
     const longestWord = name.split(' ').reduce((max, word) => 
       word.length > max.length ? word : max, '');
     
     const sizePerChar = 8;
-    // Calculate based on text length with a minimum size
     const calculatedSize = Math.max(
       baseSize, 
       baseSize + (longestWord.length * sizePerChar)
     );
-    
-    // Add more space for multi-word skills
+  
     const wordCount = name.split(' ').length;
     const multiWordBonus = wordCount > 1 ? (wordCount * 15) : 0;
-    
-    // Add some randomness but keep within reasonable bounds
+  
     return calculatedSize + multiWordBonus + (Math.random() * 10);
   };
 
@@ -76,8 +69,8 @@ export default function Skills() {
           x: Math.random() * (width - size),
           y: Math.random() * (height - size),
           size,
-          speed: Math.random() * 0.5 + 0.5, // Slightly increased base speed
-          direction: Math.random() * Math.PI * 2, // Random direction in radians
+          speed: Math.random() * 0.5 + 0.5, 
+          direction: Math.random() * Math.PI * 2, 
           isHovered: false
         };
       });
@@ -119,7 +112,6 @@ export default function Skills() {
     
     const animate = () => {
       setSkills(prevSkills => {
-        // Find hovered skill
         const hoveredSkill = hoveredSkillId !== null 
           ? prevSkills.find(s => s.id === hoveredSkillId)
           : null;
@@ -127,15 +119,9 @@ export default function Skills() {
         return prevSkills.map(skill => {
           let { x, y, direction, speed, size, isHovered } = skill;
           const { width, height } = dimensions;
-          
-          // Apply speed boost to animation
           const effectiveSpeed = isHovered ? speed * 0.5 : speed * 1.2;
-          
-          // Natural floating movement
           x += Math.cos(direction) * effectiveSpeed;
           y += Math.sin(direction) * effectiveSpeed;
-          
-          // Boundary check with adjusted size
           if (x <= 0 || x >= width - size) {
             direction = Math.PI - direction;
             x = x <= 0 ? 0 : width - size;
@@ -144,33 +130,23 @@ export default function Skills() {
             direction = -direction;
             y = y <= 0 ? 0 : height - size;
           }
-          
-          // Cursor interaction - repel when cursor is close
           const dx = x + (size / 2) - mousePosition.x;
           const dy = y + (size / 2) - mousePosition.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 150) {
-            // Repel strength inversely proportional to distance
             const repelStrength = 3 * (1 - distance / 150);
             const angle = Math.atan2(dy, dx);
             x += Math.cos(angle) * repelStrength;
             y += Math.sin(angle) * repelStrength;
           }
-          
-          // If there's a hovered bubble, make other bubbles move away from it
           if (hoveredSkill && skill.id !== hoveredSkill.id) {
             const dxHover = x + (size / 2) - (hoveredSkill.x + (hoveredSkill.size / 2));
             const dyHover = y + (size / 2) - (hoveredSkill.y + (hoveredSkill.size / 2));
             const distanceFromHover = Math.sqrt(dxHover * dxHover + dyHover * dyHover);
-            
-            // Higher repel radius when hovered (250px)
             if (distanceFromHover < 250) {
-              // Stronger repel effect
               const hoverRepelStrength = 4 * (1 - distanceFromHover / 250);
               const hoverAngle = Math.atan2(dyHover, dxHover);
-              
-              // Apply stronger repel for bubbles above the hovered one
               const isAboveHovered = y < hoveredSkill.y;
               const verticalMultiplier = isAboveHovered ? 1.5 : 1;
               

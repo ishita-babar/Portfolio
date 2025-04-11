@@ -9,7 +9,7 @@ export default function Navbar() {
 
   const handleClick = () => {
     setQuoteIndex((prev) => {
-      if (prev === quotes.length - 1) return -1; // Close
+      if (prev === quotes.length - 1) return -1; 
       return prev + 1;
     });
   };
