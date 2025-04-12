@@ -16,12 +16,15 @@ export default function Contacts() {
 
     if (!container || !textElement) return;
 
+    // Clone the text for infinite loop
     const textClone = textElement.cloneNode(true) as HTMLDivElement;
     container.appendChild(textClone);
 
+    // Apply classes for scrolling animation
     textElement.classList.add("marquee-text");
     textClone.classList.add("marquee-text");
 
+    // Inject animation styles
     const style = document.createElement("style");
     style.textContent = `
       .marquee-wrapper {
@@ -42,11 +45,14 @@ export default function Contacts() {
       }
     `;
     document.head.appendChild(style);
+
     container.classList.add("marquee-wrapper");
 
     return () => {
       document.head.removeChild(style);
-      container.removeChild(textClone);
+      if (container.contains(textClone)) {
+        container.removeChild(textClone);
+      }
     };
   }, []);
 
@@ -77,10 +83,11 @@ export default function Contacts() {
         <div className="w-full my-20 overflow-hidden">
           <div ref={containerRef}>
             <div ref={textRef} className="text-[#FAF9F6] text-7xl md:text-8xl font-bold px-4">
-              LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp;
+              LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp;
             </div>
           </div>
         </div>
+
         <div className="w-full px-6 md:px-16 my-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="text-[#FAF9F6]">
@@ -92,23 +99,24 @@ export default function Contacts() {
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               </p>
             </div>
-            <div className="flex flex-col space-y-8 mx-50">
-            <div className="flex items-center justify-start gap-x-4 group cursor-pointer hover:text-white text-[#FAF9F6]">
-              <Mail size={24} />
-              <div className="text-xl font-lg">Gmail</div>
-              <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </div>
-            <div className="flex items-center justify-start gap-x-4 group cursor-pointer hover:text-white text-[#FAF9F6]">
-            <Github size={24} />
-            <div className="text-xl font-lg">GitHub</div>
-            <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </div>
+            <div className="flex flex-col space-y-8">
+              <div onClick={handleGmailClick} className="flex items-center group cursor-pointer hover:text-white text-[#FAF9F6]">
+                <Mail size={24} className="mr-4" />
+                <div className="flex-1 text-xl font-medium">Gmail</div>
+                <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
 
-          <div className="flex items-center justify-start gap-x-4 group cursor-pointer hover:text-white text-[#FAF9F6]">
-            <Linkedin size={24} />
-            <div className="text-xl font-lg">LinkedIn</div>
-            <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </div>
+              <div onClick={handleGithubClick} className="flex items-center group cursor-pointer hover:text-white text-[#FAF9F6]">
+                <Github size={24} className="mr-4" />
+                <div className="flex-1 text-xl font-medium">GitHub</div>
+                <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
+
+              <div onClick={handleLinkedinClick} className="flex items-center group cursor-pointer hover:text-white text-[#FAF9F6]">
+                <Linkedin size={24} className="mr-4" />
+                <div className="flex-1 text-xl font-medium">LinkedIn</div>
+                <ArrowUpRight size={24} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
             </div>
           </div>
         </div>

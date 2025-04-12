@@ -29,6 +29,7 @@ export default function Skills() {
     "NodeJS", "ExpressJS", "MongoDB", "Mongoose", 
     "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning"
   ];
+  
   const getSkillSize = (name: string) => {
     const baseSize = 90;
     const longestWord = name.split(' ').reduce((max, word) => 
@@ -87,7 +88,7 @@ export default function Skills() {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [dimensions.width, dimensions.height]);
+  }, [dimensions.width, dimensions.height, skillNames, dimensions]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -117,7 +118,8 @@ export default function Skills() {
           : null;
           
         return prevSkills.map(skill => {
-          let { x, y, direction, speed, size, isHovered } = skill;
+          let { x, y, direction } = skill;
+          const { speed, size, isHovered } = skill;
           const { width, height } = dimensions;
           const effectiveSpeed = isHovered ? speed * 0.5 : speed * 1.2;
           x += Math.cos(direction) * effectiveSpeed;
@@ -192,7 +194,7 @@ export default function Skills() {
       <CursorSpotlight />
       <div
         ref={containerRef}
-        className="relative h-screen w-full  text-black font-vietnam bg-cover bg-center overflow-hidden"
+        className="relative h-screen w-full text-black font-vietnam bg-cover bg-center overflow-hidden"
         style={{ backgroundImage: "url('https://i.ibb.co/dwL20gp5/Landing-page-bg-1.png')" }}
       >
         <Navbar />

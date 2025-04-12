@@ -3,6 +3,7 @@ import CursorSpotlight from "@/components/Cursor";
 import Navbar from "@/components/Navbar";
 import { Project } from "@/data/Project";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Projects() {
   return (
@@ -23,7 +24,7 @@ export default function Projects() {
             <div key={project.id} className="perspective group cursor-none">
               <div className="relative w-full aspect-[4/3] transition-transform duration-500 transform-style preserve-3d group-hover:rotate-y-180 rounded-xl shadow-md">
                 <div className="absolute w-full h-full backface-hidden overflow-hidden rounded-xl">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.name}
                     className="w-full h-full object-cover rounded-xl"
