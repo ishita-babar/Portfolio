@@ -60,7 +60,7 @@ export type Project = {
       image: "https://i.ibb.co/RGbfwtCr/Taskflow.png",
       description: "A one-stop productivity platform for tasks, budgeting, journaling, notes, and habit tracking.",
       link: "https://github.com/ishita-babar/horizon",
-      site: "",
+      site: "https://ishita-babar.github.io/horizon/",
       techStack: ["Reactjs", "CSS", "Javacript"],
     },
   ];
