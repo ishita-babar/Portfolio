@@ -23,7 +23,7 @@ export default function Home() {
             className="text-9xl font-light leading-tight"
             style={{ x: ishitaX }}
           >
-            👋 I’m Ishita Babar
+            * I’m Ishita Babar
           </motion.h1>
 
           <div className="flex justify-between items-start w-full mt-10">

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Navbar() {
   const [quoteIndex, setQuoteIndex] = useState(-1);
-  const quotes = ["Hi, my name is Dino!", "Nice to meet you"];
+  const quotes = ["Nice to meet you!", "Let's connect"];
 
   const handleClick = () => {
     setQuoteIndex((prev) => {
