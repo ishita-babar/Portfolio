@@ -12,7 +12,10 @@ export default function CursorSpotlight({ size = 20, text = "" }: CursorSpotligh
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      setPosition((prev) => {
+        if (prev.x === e.clientX && prev.y === e.clientY) return prev;
+        return { x: e.clientX, y: e.clientY };
+      });
     };
 
     window.addEventListener("mousemove", moveCursor);

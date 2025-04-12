@@ -83,7 +83,7 @@ export default function Contacts() {
         <div className="w-full my-20 overflow-hidden">
           <div ref={containerRef}>
             <div ref={textRef} className="text-[#FAF9F6] text-7xl md:text-8xl font-bold px-4">
-              LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET'S WORK TOGETHER &nbsp;&nbsp;&nbsp;
+              LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp;
             </div>
           </div>
         </div>
@@ -92,11 +92,11 @@ export default function Contacts() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="text-[#FAF9F6]">
               <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-                I'm not hard to find.<br />
-                Let's create something truly spectacular.
+                I&apos;m not hard to find.<br />
+                Let&apos;s create something truly spectacular.
               </h2>
               <p className="text-lg opacity-80 max-w-md">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               </p>
             </div>
             <div className="flex flex-col space-y-8">

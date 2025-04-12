@@ -27,6 +27,8 @@ export default function Projects() {
                   <Image
                     src={project.image}
                     alt={project.name}
+                    width={500}
+                    height={500}
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>

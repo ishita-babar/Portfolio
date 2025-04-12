@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import CursorSpotlight from "@/components/Cursor";
 import Navbar from "@/components/Navbar";
 
@@ -21,15 +21,16 @@ export default function Skills() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [hoveredSkillId, setHoveredSkillId] = useState<number | null>(null);
   const animationRef = useRef<number | null>(null);
+  const skillsRef = useRef<Skill[]>([]);
 
-  const skillNames = [
+  const skillNames = useMemo(() => [
     "C", "C++", "Python", "Java", "JavaScript",
     "React", "NextJS", "TypeScript", "Redux", "Axios", 
     "TailwindCSS", "SASS", "HTML", "CSS",
     "NodeJS", "ExpressJS", "MongoDB", "Mongoose", 
     "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning"
-  ];
-  
+  ], []);
+
   const getSkillSize = (name: string) => {
     const baseSize = 90;
     const longestWord = name.split(' ').reduce((max, word) => 
@@ -49,7 +50,7 @@ export default function Skills() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    
+
     const updateDimensions = () => {
       if (!containerRef.current) return;
       const { width, height } = containerRef.current.getBoundingClientRect();
@@ -57,11 +58,11 @@ export default function Skills() {
     };
 
     updateDimensions();
-    
+
     const generateSkills = () => {
       const { width, height } = dimensions;
       if (width === 0 || height === 0) return;
-      
+
       const newSkills = skillNames.map((name, index) => {
         const size = getSkillSize(name);
         return {
@@ -75,8 +76,9 @@ export default function Skills() {
           isHovered: false
         };
       });
-      
+
       setSkills(newSkills);
+      skillsRef.current = newSkills;
     };
 
     window.addEventListener('resize', updateDimensions);
@@ -90,103 +92,132 @@ export default function Skills() {
     };
   }, [dimensions.width, dimensions.height, skillNames, dimensions]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      });
-    };
+useEffect(() => {
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!containerRef.current) return; // 👈 Prevents error
+  
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+  
 
-    window.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+  window.addEventListener("mousemove", handleMouseMove);
+  return () => window.removeEventListener("mousemove", handleMouseMove);
+}, []); // ✅ Run only once on mount
+
 
   useEffect(() => {
-    if (skills.length === 0 || !containerRef.current) return;
-    
+    skillsRef.current = skills;
+  }, [skills]);
+
+  useEffect(() => {
+    if (!hoveredSkillId && hoveredSkillId !== 0) {
+      setSkills(prevSkills => 
+        prevSkills.map(skill => ({ ...skill, isHovered: false }))
+      );
+    } else {
+      setSkills(prevSkills => 
+        prevSkills.map(skill => 
+          skill.id === hoveredSkillId ? { ...skill, isHovered: true } : { ...skill, isHovered: false }
+        )
+      );
+    }
+  }, [hoveredSkillId]);
+
+  useEffect(() => {
+    if (skillsRef.current.length === 0 || !containerRef.current) return;
+
     const animate = () => {
-      setSkills(prevSkills => {
-        const hoveredSkill = hoveredSkillId !== null 
-          ? prevSkills.find(s => s.id === hoveredSkillId)
-          : null;
-          
-        return prevSkills.map(skill => {
-          let { x, y, direction } = skill;
-          const { speed, size, isHovered } = skill;
-          const { width, height } = dimensions;
-          const effectiveSpeed = isHovered ? speed * 0.5 : speed * 1.2;
-          x += Math.cos(direction) * effectiveSpeed;
-          y += Math.sin(direction) * effectiveSpeed;
-          if (x <= 0 || x >= width - size) {
-            direction = Math.PI - direction;
-            x = x <= 0 ? 0 : width - size;
+      const currentSkills = skillsRef.current;
+      const hoveredSkill = hoveredSkillId !== null 
+        ? currentSkills.find(s => s.id === hoveredSkillId)
+        : null;
+
+      const updatedSkills = currentSkills.map(skill => {
+        let { x, y, direction } = skill;
+        const { speed, size, isHovered } = skill;
+        const { width, height } = dimensions;
+        const effectiveSpeed = isHovered ? speed * 0.5 : speed * 1.2;
+
+        x += Math.cos(direction) * effectiveSpeed;
+        y += Math.sin(direction) * effectiveSpeed;
+
+        if (x <= 0 || x >= width - size) {
+          direction = Math.PI - direction;
+          x = x <= 0 ? 0 : width - size;
+        }
+        if (y <= 0 || y >= height - size) {
+          direction = -direction;
+          y = y <= 0 ? 0 : height - size;
+        }
+
+        const dx = x + (size / 2) - mousePosition.x;
+        const dy = y + (size / 2) - mousePosition.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 150) {
+          const repelStrength = 3 * (1 - distance / 150);
+          const angle = Math.atan2(dy, dx);
+          x += Math.cos(angle) * repelStrength;
+          y += Math.sin(angle) * repelStrength;
+        }
+
+        if (hoveredSkill && skill.id !== hoveredSkill.id) {
+          const dxHover = x + (size / 2) - (hoveredSkill.x + (hoveredSkill.size / 2));
+          const dyHover = y + (size / 2) - (hoveredSkill.y + (hoveredSkill.size / 2));
+          const distanceFromHover = Math.sqrt(dxHover * dxHover + dyHover * dyHover);
+
+          if (distanceFromHover < 250) {
+            const hoverRepelStrength = 4 * (1 - distanceFromHover / 250);
+            const hoverAngle = Math.atan2(dyHover, dxHover);
+            const isAboveHovered = y < hoveredSkill.y;
+            const verticalMultiplier = isAboveHovered ? 1.5 : 1;
+
+            x += Math.cos(hoverAngle) * hoverRepelStrength * verticalMultiplier;
+            y += Math.sin(hoverAngle) * hoverRepelStrength * verticalMultiplier;
           }
-          if (y <= 0 || y >= height - size) {
-            direction = -direction;
-            y = y <= 0 ? 0 : height - size;
-          }
-          const dx = x + (size / 2) - mousePosition.x;
-          const dy = y + (size / 2) - mousePosition.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 150) {
-            const repelStrength = 3 * (1 - distance / 150);
-            const angle = Math.atan2(dy, dx);
-            x += Math.cos(angle) * repelStrength;
-            y += Math.sin(angle) * repelStrength;
-          }
-          if (hoveredSkill && skill.id !== hoveredSkill.id) {
-            const dxHover = x + (size / 2) - (hoveredSkill.x + (hoveredSkill.size / 2));
-            const dyHover = y + (size / 2) - (hoveredSkill.y + (hoveredSkill.size / 2));
-            const distanceFromHover = Math.sqrt(dxHover * dxHover + dyHover * dyHover);
-            if (distanceFromHover < 250) {
-              const hoverRepelStrength = 4 * (1 - distanceFromHover / 250);
-              const hoverAngle = Math.atan2(dyHover, dxHover);
-              const isAboveHovered = y < hoveredSkill.y;
-              const verticalMultiplier = isAboveHovered ? 1.5 : 1;
-              
-              x += Math.cos(hoverAngle) * hoverRepelStrength * verticalMultiplier;
-              y += Math.sin(hoverAngle) * hoverRepelStrength * verticalMultiplier;
-            }
-          }
-          
-          return { ...skill, x, y, direction };
-        });
+        }
+
+        return { ...skill, x, y, direction };
       });
-      
+
+      skillsRef.current = updatedSkills;
+
+      // ✅ Prevent infinite loop by checking for changes
+      const hasChanged = updatedSkills.some((s, i) => {
+        const prev = skillsRef.current[i];
+        return (
+          s.x !== prev.x ||
+          s.y !== prev.y ||
+          s.direction !== prev.direction
+        );
+      });
+
+      if (hasChanged) {
+        setSkills([...updatedSkills]);
+      }
+
       animationRef.current = requestAnimationFrame(animate);
     };
-    
+
     animationRef.current = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [skills.length, mousePosition, dimensions, hoveredSkillId]);
+  }, [dimensions, mousePosition, hoveredSkillId]);
 
   const handleMouseEnter = (id: number) => {
     setHoveredSkillId(id);
-    setSkills(prevSkills => 
-      prevSkills.map(skill => 
-        skill.id === id ? { ...skill, isHovered: true } : skill
-      )
-    );
   };
 
   const handleMouseLeave = () => {
     setHoveredSkillId(null);
-    setSkills(prevSkills => 
-      prevSkills.map(skill => ({ ...skill, isHovered: false }))
-    );
   };
 
   return (
@@ -202,7 +233,7 @@ export default function Skills() {
           <div className="text-4xl font-semibold mb-2 mt-6">Skills</div>
           <hr className="border-black w-full" />
         </div>
-        
+
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
           <a 
             href="https://drive.google.com/file/d/120-TF5szQXqN2068LKnKyq9QTS6edDbL/view?usp=sharing" 
@@ -213,7 +244,7 @@ export default function Skills() {
             Resume
           </a>
         </div>
-        
+
         {skills.map((skill) => (
           <div
             key={skill.id}
