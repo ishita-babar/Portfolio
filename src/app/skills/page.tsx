@@ -29,6 +29,7 @@ export default function Skills() {
     "NodeJS", "ExpressJS", "MongoDB", "Mongoose", 
     "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning"
   ];
+
   const getSkillSize = (name: string) => {
     const baseSize = 90;
     const longestWord = name.split(' ').reduce((max, word) => 
@@ -117,11 +118,17 @@ export default function Skills() {
           : null;
           
         return prevSkills.map(skill => {
-          let { x, y, direction, speed, size, isHovered } = skill;
+          const { x: initialX, y: initialY, direction: initialDirection, speed, size, isHovered } = skill;
+          let x = initialX;
+          let y = initialY;
+          let direction = initialDirection;
+          
           const { width, height } = dimensions;
           const effectiveSpeed = isHovered ? speed * 0.5 : speed * 1.2;
+          
           x += Math.cos(direction) * effectiveSpeed;
           y += Math.sin(direction) * effectiveSpeed;
+          
           if (x <= 0 || x >= width - size) {
             direction = Math.PI - direction;
             x = x <= 0 ? 0 : width - size;
@@ -130,6 +137,7 @@ export default function Skills() {
             direction = -direction;
             y = y <= 0 ? 0 : height - size;
           }
+          
           const dx = x + (size / 2) - mousePosition.x;
           const dy = y + (size / 2) - mousePosition.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
@@ -140,10 +148,12 @@ export default function Skills() {
             x += Math.cos(angle) * repelStrength;
             y += Math.sin(angle) * repelStrength;
           }
+          
           if (hoveredSkill && skill.id !== hoveredSkill.id) {
             const dxHover = x + (size / 2) - (hoveredSkill.x + (hoveredSkill.size / 2));
             const dyHover = y + (size / 2) - (hoveredSkill.y + (hoveredSkill.size / 2));
             const distanceFromHover = Math.sqrt(dxHover * dxHover + dyHover * dyHover);
+            
             if (distanceFromHover < 250) {
               const hoverRepelStrength = 4 * (1 - distanceFromHover / 250);
               const hoverAngle = Math.atan2(dyHover, dxHover);
@@ -192,7 +202,7 @@ export default function Skills() {
       <CursorSpotlight />
       <div
         ref={containerRef}
-        className="relative h-screen w-full  text-black font-vietnam bg-cover bg-center overflow-hidden"
+        className="relative h-screen w-full text-black font-vietnam bg-cover bg-center overflow-hidden"
         style={{ backgroundImage: "url('https://i.ibb.co/dwL20gp5/Landing-page-bg-1.png')" }}
       >
         <Navbar />
