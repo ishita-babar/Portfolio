@@ -40,4 +40,4 @@ export type Experience = {
     }
   ];
   
-  export const introText = `I have collaborated with innovative startups and established companies, consistently delivering impactful solutions that drive real-world results. My passion lies in building digital experiences that transform ideas into functional, elegant applications. With expertise spanning frontend development, AI integration, and content creation, I bring a versatile skill set to every project—turning complex challenges into streamlined solutions that users love.`;
+  export const introText = `Hello! I'm Ishita Babar, a 2nd-year B.Tech student at Vellore Institute of Technology, Vellore, specializing in Computer Science with a focus on AI/ML. I'm a full-stack web developer with hands-on experience in machine learning and deep learning. I love building meaningful digital solutions—whether it's an elegant web app or an intelligent AI system, I’m passionate about writing code that creates real impact.`;
