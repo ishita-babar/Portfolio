@@ -12,15 +12,6 @@ export type Experience = {
   
   export const experiences: Experience[] = [
     {
-      id: "mentorgain",
-      company: "Mentorgain",
-      position: "Software Developer Intern",
-      duration: "March 2025 - Present",
-      website: "https://www.mentorgain.com/",
-      technologies: ["ReactJs", "Typescript", "Bootstrap CSS"],
-      description: "• Implemented key features tailored to organizational needs and improved UI consistency across the platform\n• Resolved UI/UX bugs to enhance user engagement and accessibility\n• Collaborated on maintaining a scalable frontend for a platform accessed by large organizations"
-    },
-    {
       id: "interact-now",
       company: "Interact Now",
       position: "Frontend Developer Intern",
