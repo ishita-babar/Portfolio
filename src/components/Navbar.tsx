@@ -37,7 +37,7 @@ export default function Navbar() {
             </div>
           )}
 
-          <Image src="/dino.png" alt="Dino" width={70} height={70} />
+          <Image src="https://i.ibb.co/xqmwgfYK/dino.png" alt="Dino" width={70} height={70} />
         </div>
       </div>
     </nav>
