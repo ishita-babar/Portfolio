@@ -18,32 +18,34 @@ export default function Home() {
       <CursorSpotlight />
       <div className="relative w-full bg-[#f9f9f9] text-black font-vietnam overflow-x-hidden">
         <Navbar />
-        <section className="w-full h-screen flex flex-col justify-between px-12 py-24 overflow-hidden">
+        <section className="w-full h-screen flex flex-col justify-between px-6 sm:px-12 py-24 pt-16 sm:pt-24 md:py-24 overflow-hidden">
           <motion.h1
-            className="text-9xl font-light leading-tight"
+            className="text-5xl sm:text-7xl md:text-9xl font-light leading-tight mt-16 sm:mt-0"
             style={{ x: ishitaX }}
           >
-            * I’m Ishita Babar
+            * I'm Ishita Babar
           </motion.h1>
 
-          <div className="flex justify-between items-start w-full mt-10">
-            <p className="max-w-md text-2xl leading-relaxed">
-            With a year of hands-on experience, I specialize in building scalable, user-focused web applications that merge clean 
-            architecture with engaging interfaces.
+          <div className="flex flex-col md:flex-row justify-between items-start w-full mt-10">
+            <p className="max-w-md text-xl sm:text-2xl leading-relaxed">
+              With a year of hands-on experience, I specialize in building scalable, user-focused web applications that merge clean 
+              architecture with engaging interfaces.
             </p>
-            <h2 className="text-7xl font-extrabold whitespace-nowrap mt-5">
+            <h2 className="text-4xl md:text-7xl font-extrabold mt-6 md:mt-5">
               A Web Developer
             </h2>
           </div>
-
-          <motion.p
-          className="text-9xl font-light mt-20 mx-20"
-          style={{ x: livesX }}
-        >
-          <span className="flex items-center gap-6">
-            lives by code <Terminal className="w-[100px] h-[100px] mt-6" />
-          </span>
-        </motion.p>
+          <motion.div
+            className="text-4xl sm:text-5xl md:text-9xl font-light mt-10 sm:mt-20 w-full overflow-visible"
+            style={{ x: livesX }}
+          >
+            <span className="flex flex-wrap items-center gap-3 md:gap-6">
+              <span className="whitespace-nowrap">lives by</span> 
+              <span className="flex items-center whitespace-nowrap">
+                code <Terminal className="w-10 h-10 md:w-24 md:h-24 lg:w-[100px] lg:h-[100px] ml-2 mt-2 md:mt-6" />
+              </span>
+            </span>
+          </motion.div>
         </section>
         <Projects />
         <Experience />

@@ -16,15 +16,12 @@ export default function Contacts() {
 
     if (!container || !textElement) return;
 
-    // Clone the text for infinite loop
     const textClone = textElement.cloneNode(true) as HTMLDivElement;
     container.appendChild(textClone);
 
-    // Apply classes for scrolling animation
     textElement.classList.add("marquee-text");
     textClone.classList.add("marquee-text");
 
-    // Inject animation styles
     const style = document.createElement("style");
     style.textContent = `
       .marquee-wrapper {
@@ -72,26 +69,27 @@ export default function Contacts() {
     <>
       <CursorSpotlight />
       <div
-        className="relative min-h-screen text-[#FAF9F6] font-vietnam bg-cover bg-center w-full"
+        className="relative min-h-screen text-[#FAF9F6] font-vietnam bg-cover bg-center w-full pb-20 md:pb-0"
         style={{ backgroundImage: "url('https://i.ibb.co/HLTt4CBM/Contact-page.png')" }}
       >
-        <div className="w-full px-6 md:px-16 pt-16">
+        {/* Added padding-top to account for navbar height */}
+        <div className="w-full px-6 md:px-16 pt-24 md:pt-16">
           <div className="text-4xl font-semibold mb-2">Contacts</div>
           <hr className="border-[#FAF9F6] mb-10 w-full" />
         </div>
 
-        <div className="w-full my-20 overflow-hidden">
+        <div className="w-full my-10 md:my-20 overflow-hidden">
           <div ref={containerRef}>
-            <div ref={textRef} className="text-[#FAF9F6] text-7xl md:text-8xl font-bold px-4">
+            <div ref={textRef} className="text-[#FAF9F6] text-5xl sm:text-7xl md:text-8xl font-bold px-4">
               LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp; LET&apos;S WORK TOGETHER &nbsp;&nbsp;&nbsp;
             </div>
           </div>
         </div>
 
-        <div className="w-full px-6 md:px-16 my-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="w-full px-6 md:px-16 my-10 md:my-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="text-[#FAF9F6]">
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8">
                 I&apos;m not hard to find.<br />
                 Let&apos;s create something truly spectacular.
               </h2>
@@ -99,7 +97,7 @@ export default function Contacts() {
                 I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               </p>
             </div>
-            <div className="flex flex-col space-y-8">
+            <div className="flex flex-col space-y-6 md:space-y-8">
               <div onClick={handleGmailClick} className="flex items-center group cursor-pointer hover:text-white text-[#FAF9F6]">
                 <Mail size={24} className="mr-4" />
                 <div className="flex-1 text-xl font-medium">Gmail</div>
@@ -121,7 +119,8 @@ export default function Contacts() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 w-full">
+        {/* Changed positioning for footer on mobile */}
+        <div className="md:absolute md:bottom-0 w-full mt-16 md:mt-0">
           <Footer />
         </div>
       </div>

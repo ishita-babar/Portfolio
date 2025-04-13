@@ -213,7 +213,7 @@ export default function Skills() {
         
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
           <a 
-            href="https://drive.google.com/file/d/120-TF5szQXqN2068LKnKyq9QTS6edDbL/view?usp=sharing" 
+            href="https://drive.google.com/file/d/1oQK44_fiGZB5njFnzn4u2P1UoTFKKzB6/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="px-10 py-3 bg-[#1D1D1D] text-[#FAF9F6] rounded-md font-medium text-xl hover:bg-opacity-100 transition-all shadow-lg flex items-center justify-center"

@@ -4,8 +4,32 @@ import Navbar from "@/components/Navbar";
 import { Project } from "@/data/Project";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleFlip = (id: number) => {
+    if (isMobile) {
+      setFlippedCards(prev => 
+        prev.includes(id) 
+          ? prev.filter(cardId => cardId !== id) 
+          : [...prev, id]
+      );
+    }
+  };
+
   return (
     <>
       <CursorSpotlight />
@@ -21,8 +45,16 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {Project.map((project) => (
-            <div key={project.id} className="perspective group cursor-none">
-              <div className="relative w-full aspect-[4/3] transition-transform duration-500 transform-style preserve-3d group-hover:rotate-y-180 rounded-xl shadow-md">
+            <div 
+              key={project.id} 
+              className="perspective group cursor-none"
+              onClick={() => isMobile && toggleFlip(project.id)}
+            >
+              <div className={`relative w-full aspect-[4/3] transition-transform duration-500 transform-style preserve-3d ${
+                isMobile 
+                  ? flippedCards.includes(project.id) ? 'rotate-y-180' : ''
+                  : 'group-hover:rotate-y-180'
+              } rounded-xl shadow-md`}>
                 <div className="absolute w-full h-full backface-hidden overflow-hidden rounded-xl">
                   <Image
                     src={project.image}
@@ -40,6 +72,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#FAF9F6] hover:text-gray-300 text-xl"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <FaGithub />
                       </a>
@@ -50,6 +83,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#FAF9F6] hover:text-gray-300 text-xl"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <FaExternalLinkAlt />
                       </a>
