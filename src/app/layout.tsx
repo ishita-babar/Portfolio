@@ -21,7 +21,7 @@ const beVietnam= Be_Vietnam_Pro({
 export const metadata: Metadata = {
   title: "Ishita Babar",
   icons: {
-    icon: "/logo.png", 
+    icon: "https://i.ibb.co/dJ1ys6Y9/logo.png", 
   },
 };
 
