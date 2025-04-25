@@ -16,7 +16,9 @@ export default function Home() {
   return (
     <>
       <CursorSpotlight />
-      <div className="relative w-full bg-[#f9f9f9] text-black font-vietnam overflow-x-hidden">
+      <div className="relative w-full bg-[#f9f9f9] text-black font-vietnam overflow-x-hidden"
+      style={{ backgroundImage: "url('https://i.ibb.co/dwL20gp5/Landing-page-bg-1.png')" }}
+      >
         <Navbar />
         <section className="w-full h-screen flex flex-col justify-between px-6 sm:px-12 py-24 pt-16 sm:pt-24 md:py-24 overflow-hidden">
           <motion.h1
