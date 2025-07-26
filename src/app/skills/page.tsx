@@ -27,7 +27,7 @@ export default function Skills() {
     "React", "NextJS", "TypeScript", "Redux", "Axios", 
     "TailwindCSS", "SASS", "HTML", "CSS",
     "NodeJS", "ExpressJS", "MongoDB", "Mongoose", 
-    "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning"
+    "Prisma", "PostgreSQL", "Deep Learning", "Machine Learning", "LangChain"
   ];
 
   const getSkillSize = (name: string) => {

@@ -30,8 +30,9 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row justify-between items-start w-full mt-10">
             <p className="max-w-md text-xl sm:text-2xl leading-relaxed">
-              With a year of hands-on experience, I specialize in building scalable, user-focused web applications that merge clean 
-              architecture with engaging interfaces.
+              It's not just about writing code or visuals—it's about making the entire system work smoothly, reliably, and at scale.
+
+
             </p>
             <h2 className="text-4xl md:text-7xl font-extrabold mt-6 md:mt-5">
               A Web Developer

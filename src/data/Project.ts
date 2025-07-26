@@ -38,12 +38,12 @@ export type Project = {
     },
     {
       id: 4,
-      name: "DeepFake Detection",
-      image: "https://i.ibb.co/zWSpTB1c/Deepfake.png",
-      description: "A web app that detects if uploaded images, videos, texts, or audio are AI-generated.",
-      link: "https://github.com/ishita-babar/deepfake-detection",
+      name: "Admin Inventory Dashboard",
+      image: "https://i.ibb.co/nq3vkHk8/Screenshot-2025-07-26-at-11-38-59-AM.png",
+      description: "A web app that that helps in forecasting inventory based on trends and sales data.",
+      link: "https://github.com/ishita-babar/admin-inventory",
       site: "",
-      techStack: ["Deep Learning", "Machine Learning", "Python"],
+      techStack: ["Spring Boot", "Machine Learning", "Next.js", "Tailwind CSS", "Typescript"],
     },
     {
       id: 5,

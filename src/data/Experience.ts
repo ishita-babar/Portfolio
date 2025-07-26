@@ -12,6 +12,15 @@ export type Experience = {
   
   export const experiences: Experience[] = [
     {
+      id: "rebee-ai",
+      company: "Rebee AI",
+      position: "Ml Intern",
+      duration: "May 2025 - July 2025",
+      website: "https://www.linkedin.com/company/rebee-ai/",
+      technologies: ["Machine Learning", "Gen AI", "LangChain", "Python"],
+      description: "•Developed custom NER models using SpaCy and transformers to extract structured fields from unstructured resume text\n• Created and cleaned large-scale datasets, fine-tuned models to identify entities with 98% accuracy\n •Optimized model performance using feature engineering, regex patterns, and semantic similarity algorithms"
+    },
+    {
       id: "interact-now",
       company: "Interact Now",
       position: "Frontend Developer Intern",
@@ -29,15 +38,7 @@ export type Experience = {
       technologies: ["Machine Learning", "Deep Learning"],
       description: "• Developed an AI-powered application that enables students to upload study materials and receive personalized audio summaries\n• Integrated an interactive feature where students can practice answering questions, with AI providing feedback on missing points"
     },
-    {
-      id: "cherry-media",
-      company: "Cherry Media",
-      position: "Content Writer",
-      duration: "June 2023 - July 2023",
-      website: "https://www.thecherrymedia.com/",
-      technologies: ["Copy Writing", "Ghost Writing", "Content Writing"],
-      description: "• Created compelling LinkedIn posts as a ghostwriter, significantly improving client analytics, increasing reach, and ensuring high-quality engagement\n• Managed Twitter and YouTube accounts, developing content strategies that enhanced audience interaction and visibility"
-    }
+    
   ];
   
   export const introText = `Hello! I'm Ishita Babar, a 2nd-year B.Tech student at Vellore Institute of Technology, Vellore, specializing in Computer Science with a focus on AI/ML. I'm a full-stack web developer with hands-on experience in machine learning and deep learning. I love building meaningful digital solutions—whether it's an elegant web app or an intelligent AI system, I’m passionate about writing code that creates real impact.`;
