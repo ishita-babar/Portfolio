@@ -30,7 +30,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row justify-between items-start w-full mt-10">
             <p className="max-w-md text-xl sm:text-2xl leading-relaxed">
-              It's not just about writing code or visuals—it's about making the entire system work smoothly, reliably, and at scale.
+              It&apos;s not just about writing code or visuals—it&apos;s about making the entire system work smoothly, reliably, and at scale.
 
 
             </p>
