@@ -22,10 +22,10 @@ export type Experience = {
     },
     {
       id: "interact-now",
-      company: "Interact Now",
+      company: "Mentorgain",
       position: "Frontend Developer Intern",
       duration: "June 2024 - Dec 2024",
-      website: "https://interactnow.in/",
+      website: "https://www.mentorgain.com/",
       technologies: ["Next.Js", "Typescript", "Tailwind CSS", "Websocket"],
       description: "• Designed & Built Resource handling for organizations coordinated with backend developers for integration process\n• Upgraded the reviews section in terms of user experience & frontend design\n• Implemented several UI/UX fixes in numerous sections in the project"
     },
